@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Javascript Clipboard Example</h2>
+
+    <div class="code-bg">
+        Click on the button to copy to the text from the div element. Try to Paste the text
+        in different Window.
+    </div>
+    <br/>
+    <br/>
+
+    <button onclick="copyClipboard();">Copy Text</button> <br/><br/>
+
+    <textarea name="textarea" id="textAreaClipboard" cols="50" rows="4">
+        At This Website you will learn how to make a website. They offer free tutorials
+        in all web development technologies.
+    </textarea>
+
+    <script>
+
+        function copyClipboard(){
+            var elm = document.getElementById('textAreaClipboard');
+
+        if(document.body.createTextRange){
+            var range = document.body.createTextRange();
+            range.moveToElementText(elm);
+            range.select();
+            document.execCommand("Copy");
+            alert("Copied div Element to Clipboard");
+        }
+        else if(window.getSelection){
+            var selection = window.getSelection();
+            var range = document.createRange();
+            range.selectNodeContents(elm);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand("Copy");
+            alert("Copied div element to Clipboard");
+        }
+        }     
+    </script>
+
+</body>
+</html>
